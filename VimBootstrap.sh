@@ -58,6 +58,6 @@ cp ctags-5.8/ctags $BINDIR
 rm -rf ctags-5.8*
 
 # Install plugins
-$BINDIR/vim -S BundleMan.vim
+$BINDIR/vim -N -u NONE -S BundleMan.vim
 
 popd

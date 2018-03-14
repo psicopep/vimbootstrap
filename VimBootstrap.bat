@@ -75,6 +75,6 @@ del unzip.vbs /q
 del %DOTFILESZIP%
 
 :: Install plugins
-%VIMDIR%\vim -u NONE -S BundleMan.vim
+%VIMDIR%\vim -N -u NONE -S BundleMan.vim
 
 popd

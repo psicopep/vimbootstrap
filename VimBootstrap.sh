@@ -39,15 +39,12 @@ chmod 500 $BINDIR/vim
 # Link xxd from bin directory
 ln -s $RTDIR/xxd $BINDIR/xxd
 
-# Install ag
-AGGZ=the_silver_searcher-master.tar.gz
-curl -L https://github.com/ggreer/the_silver_searcher/$MASTER -o $AGGZ
-tar xvfz $AGGZ
-pushd the_silver_searcher-master
-./build.sh
-popd
-cp the_silver_searcher-master/ag $BINDIR
-rm -r the_silver_searcher-master*
+# Install ripgrep
+RGGZ=ripgrep-0.8.1-x86_64-unknown-linux-musl.tar.gz
+curl -L https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/$RGGZ -o $RGGZ
+tar xvfz $RGGZ
+cp ripgrep-0.8.1-x86_64-unknown-linux-musl/rg $BINDIR
+rm -r ripgrep-0.8.1-x86_64-unknown-linux-musl*
 
 # Install ctags
 CTAGSGZ=ctags-5.8.tar.gz

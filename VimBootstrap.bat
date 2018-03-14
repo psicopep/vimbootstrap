@@ -8,9 +8,9 @@ set UNZIP=%UNZIPDIR%\7za
 set VIMZIP=complete-x86.7z
 set LUAZIP=lua-5.3.3_Win32_bin.zip
 set VIMDIR=Vim80
-set AGVER=0.29.1-1641
-set AGDIR=ag_%AGVER%
-set AGZIP=ag.zip
+set RGVER=0.8.1
+set RGDIR=ripgrep-0.8.1
+set RGZIP=ripgrep-0.8.1-i686-pc-windows-msvc.zip
 set CTAGSVER=5.8
 set CTAGSDIR=ctags58
 set CTAGSZIP=ctags58.zip
@@ -51,7 +51,7 @@ echo sa.NameSpace(extractTo).CopyHere filesInzip, 20 >> unzip.vbs
 cscript download.vbs "http://7-zip.org/a/%UNZIPZIP%" %UNZIPZIP%
 cscript download.vbs "http://tuxproject.de/projects/vim/%VIMZIP%" %VIMZIP%
 cscript download.vbs "http://joedf.ahkscript.org/LuaBuilds/hdata/%LUAZIP%" %LUAZIP%
-cscript download.vbs "http://kjkpub.s3.amazonaws.com/software/the_silver_searcher/rel/%AGVER%/%AGZIP%" %AGZIP%
+cscript download.vbs "https://github.com/BurntSushi/ripgrep/releases/download/%RGVER%/%RGZIP%" %RGZIP%
 cscript download.vbs "http://ufpr.dl.sourceforge.net/project/ctags/ctags/%CTAGSVER%/%CTAGSZIP%" %CTAGSZIP%
 cscript download.vbs "https://github.com/psicopep/dotfiles/archive/master/master.zip" %DOTFILESZIP%
 
@@ -59,7 +59,7 @@ cscript download.vbs "https://github.com/psicopep/dotfiles/archive/master/master
 cscript unzip.vbs %UNZIPZIP% %UNZIPDIR%
 %UNZIP% x %VIMZIP% -o%VIMDIR%
 %UNZIP% x %LUAZIP% -o%VIMDIR%
-%UNZIP% x %AGZIP% -o%AGDIR%
+%UNZIP% x %RGZIP% -o%RGDIR% rg.exe
 %UNZIP% e %CTAGSZIP% -o%CTAGSDIR% %CTAGSDIR%/*.exe
 %UNZIP% e %DOTFILESZIP% dotfiles-master/vim/*
 
@@ -68,7 +68,7 @@ del %UNZIPZIP% /q
 rmdir %UNZIPDIR% /s /q
 del %VIMZIP% /q
 del %LUAZIP% /q
-del %AGZIP% /q
+del %RGZIP% /q
 del %CTAGSZIP% /q
 del download.vbs /q
 del unzip.vbs /q

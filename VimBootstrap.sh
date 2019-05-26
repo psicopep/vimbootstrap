@@ -1,7 +1,7 @@
 #!/bin/sh
 
 VIMDIR=`/bin/pwd`
-RTDIR=$VIMDIR/vim80
+RTDIR=$VIMDIR/vimdist
 BINDIR=$VIMDIR/bin
 MASTER=archive/master/master.tar.gz
 
@@ -33,7 +33,7 @@ rm -r dotfiles-master*
 
 # Make Vim use our vimrc
 echo "#!/bin/sh" > $BINDIR/vim
-echo "VIM=$RTDIR exec $RTDIR/vim -u $VIMDIR/_vimrc \"\$@\"" >> $BINDIR/vim
+echo "PATH=$BINDIR:\$PATH VIM=$RTDIR exec $RTDIR/vim -Nu $VIMDIR/_vimrc \"\$@\"" >> $BINDIR/vim
 chmod 500 $BINDIR/vim
 
 # Link xxd from bin directory

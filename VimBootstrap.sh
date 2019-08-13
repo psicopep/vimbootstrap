@@ -13,8 +13,11 @@ mkdir -p $BINDIR
 
 # Vim
 VIMGZ=vim-master.tar.gz
-curl -L https://github.com/vim/vim/$MASTER -o $VIMGZ
-tar xvfz $VIMGZ
+if [ ! -e $VIMGZ ]; then
+    curl -L https://github.com/vim/vim/tarball/master -o $VIMGZ
+fi
+mkdir vim-master
+tar xvfz $VIMGZ -C vim-master --strip-components 1
 pushd vim-master
 ./configure --prefix=/usr --localstatedir=/var/lib/vim --with-features=huge --with-x=yes --disable-gui --enable-multibyte --enable-pythoninterp=dynamic --enable-python3interp=dynamic --enable-luainterp=dynamic --disable-netbeans --disable-gpm --disable-sysmouse --disable-nls
 make
@@ -26,8 +29,11 @@ rm -r vim-master*
 
 # Dotfiles
 DOTFILESGZ=dotfiles-master.tar.gz
-curl -L https://github.com/psicopep/dotfiles/$MASTER -o $DOTFILESGZ
-tar xvfz $DOTFILESGZ
+if [ ! -e $DOTFILESGZ ]; then
+    curl -L https://github.com/psicopep/dotfiles/tarball/master -o $DOTFILESGZ
+fi
+mkdir dotfiles-master
+tar xvfz $DOTFILESGZ -C dotfiles-master --strip-components 1
 mv dotfiles-master/vim/* .
 rm -r dotfiles-master*
 
@@ -41,14 +47,18 @@ ln -s $RTDIR/xxd $BINDIR/xxd
 
 # Install ripgrep
 RGGZ=ripgrep-0.8.1-x86_64-unknown-linux-musl.tar.gz
-curl -L https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/$RGGZ -o $RGGZ
+if [ ! -e $RGGZ ]; then
+    curl -L https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/$RGGZ -o $RGGZ
+fi
 tar xvfz $RGGZ
 cp ripgrep-0.8.1-x86_64-unknown-linux-musl/rg $BINDIR
 rm -r ripgrep-0.8.1-x86_64-unknown-linux-musl*
 
 # Install ctags
 CTAGSGZ=ctags-5.8.tar.gz
-curl -L http://prdownloads.sourceforge.net/ctags/$CTAGSGZ -o $CTAGSGZ
+if [ ! -e $CTAGSGZ ]; then
+    curl -L http://prdownloads.sourceforge.net/ctags/$CTAGSGZ -o $CTAGSGZ
+fi
 tar xvfz $CTAGSGZ
 pushd ctags-5.8
 ./configure
